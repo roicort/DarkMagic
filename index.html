@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>DarkMagic!</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="Skeleton/css/normalize.css">
+  <link rel="stylesheet" href="Skeleton/css/skeleton.css">
+  <link rel="stylesheet" href="Skeleton/css/custom.css">
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+  <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+  <!--
+    Including other packages like Vis Timeline or Vis Graph3D here won't work.
+    You need the peer build to do that.
+  -->
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="../../dist/images/favicon.png">
+
+  <style type="text/css">
+    #mynetwork {
+      width: 100%;
+      height: 500px;
+      border: 0.01px solid rgb(189, 189, 189);
+    }
+  </style>
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <div class="section hero">
+    <div class="container">
+        <h1 class="section-heading">DarkMagic!</h1>
+      <div class="row">
+        <div class="one-half column">
+          <h4 class="hero-heading">Explora hechizos en el repositorio</h4>
+        </div>
+        <div class="one-half column phones">
+          <img class="phone" src="Skeleton/images/cernunnos.png">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section values">
+    <div class="container">
+      <div class="row">
+        <div class="one-third column value">
+          <h2 class="value-multiplier">144</h2>
+          <h5 class="value-heading">Hechizos</h5>
+        </div>
+        <div class="one-third column value">
+          <h2 class="value-multiplier">8</h2>
+          <h5 class="value-heading">Mercados</h5>
+        </div>
+        <div class="one-third column value">
+          <h2 class="value-multiplier">17</h2>
+          <h5 class="value-heading">Elementos</h5>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section get-help">
+    <div class="container">
+        <h2>Spells!</h2>
+        <br>
+      <div class="row">
+        <pre id="mynetwork"></pre>
+        <br>
+        <select id="groupby">
+          <option value="Dónde se compró">Dónde se compró</option>
+          <option value="Medidas">Medidas</option>
+          <option value="Objeto">Objeto</option>
+          <option value="Voz">Voz</option>
+        </select>
+        <button onClick="changeGroups(document.getElementById('groupby').value);">Group!</button>  
+        <div class="row">
+            <pre id="nodeContent"></pre>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section values">
+      <div class="container">
+        <div class="row">
+          <div class="one-third column value">
+              <!-- <h2 class="value-multiplier">ENES</h2> -->
+            <br>
+            <img class="u-max-full-width" src="Skeleton/images/enes.png">
+          </div>
+          <div class="one-third column value">
+            <!-- <h2 class="value-multiplier">TICS</h2> -->
+          <br>
+          <img class="u-max-full-width" src="Skeleton/images/tics.png">
+        </div>
+          <div class="one-third column value">
+              <!-- <h2 class="value-multiplier">UDIR</h2> -->
+            <br>
+            <img class="u-max-full-width" src="Skeleton/images/udir.png">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+<!-- JavaScript
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <script type="text/javascript">
+
+    function loadJSON(path,FUN, error){
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            FUN(JSON.parse(xhr.responseText))
+          }
+          else {
+            error(xhr);
+          }
+        }
+      };
+      xhr.open('GET', path, true);
+      xhr.send();
+    }
+  
+    var network;
+    var nodes = new vis.DataSet();
+    var edges = new vis.DataSet();
+  
+    var nodeContent = document.getElementById('nodeContent');
+  
+    loadJSON('data/hechizos.json', StartGraph, function(err) {console.log('error')});
+  
+    var container = document.getElementById('mynetwork');
+    var DATA = {
+      nodes: nodes,
+      edges: edges
+    };
+    var options = {
+                  nodes: {
+                      shape: 'dot',
+                      size: 16,
+                      color: {
+                      border: '#0E9ED8',
+                      background: '#CDCDCD'
+                      }
+                  },
+                  physics: {
+                      maxVelocity: 146,
+                      solver: 'forceAtlas2Based',
+                      timestep: 0.35
+                  }/*,
+                  interaction: {
+                    navigationButtons: true,
+                    keyboard: true
+                  }*/
+              };
+  
+    network = new vis.Network(container, DATA, options);
+
+      function changeGroups(groupBy){
+        for (let [k, v] of nodes._data) {
+           nodes.update({id:k, group:v[groupBy]});
+          }
+          network.setData(DATA)
+      }
+  
+    network.on('click', function (params) {
+      if (params.nodes.length > 0) {
+        
+        var data = nodes.get(params.nodes)[0];
+
+        label = JSON.stringify(data["label"]).replace(/\\r/g, '\r').replace(/\\n/g, '\n').replace(/['"]+/g, '')
+        oracion = JSON.stringify(data["Oración"]).replace(/\\r/g, '\r').replace(/\\n/g, '\n').replace(/['"]+/g, '')
+        objeto = JSON.stringify(data["Objeto"]).replace(/\\r/g, '\r').replace(/\\n/g, '\n').replace(/['"]+/g, '')
+        donde = JSON.stringify(data["Dónde se compró"]).replace(/\\r/g, '\r').replace(/\\n/g, '\n').replace(/['"]+/g, '')
+        medidas = JSON.stringify(data["Medidas"]).replace(/\\r/g, '\r').replace(/\\n/g, '\n').replace(/['"]+/g, '')
+        daad = JSON.stringify(data["Datos adicionales"]).replace(/\\r/g, '\r').replace(/\\n/g, '\n').replace(/['"]+/g, '')
+        voz = JSON.stringify(data["Voz"]).replace(/\\r/g, '\r').replace(/\\n/g, '\n').replace(/['"]+/g, '')
+        otras = JSON.stringify(data["Otras versiones"]).replace(/\\r/g, '\r').replace(/\\n/g, '\n').replace(/['"]+/g, '')
+
+        inner = "<br>" +
+                "<table>" + "<tbody>" +
+                "<tr>"+
+                "<td>" + "Nombre" + "</td>" + 
+                "<td>" + label + "</td>" + 
+                "</tr>"+
+                "<tr>"+
+                "<td>" + "Oración" + "</td>" +
+                "<td>" + oracion + "</td>" +
+                "</tr>"+
+                "<tr>"+
+                "<td>" + "Objeto" + "</td>" +
+                "<td>" + objeto + "</td>" +
+                "</tr>"+
+                "<tr>"+
+                "<td>" + "Dónde se compró" + "</td>" +
+                "<td>" + donde + "</td>" +
+                "</tr>"+
+                "<tr>"+
+                "<td>" + "Medidas" + "</td>" +
+                "<td>" + medidas + "</td>" +
+                "</tr>"+
+                "<tr>"+
+                "<td>" + "Datos Adicionales" + "</td>" +
+                "<td>" + daad + "</td>" +
+                "</tr>"+
+                "<tr>"+
+                "<td>" + "Voz" + "</td>" +
+                "<td>" + voz + "</td>" +
+                "</tr>"+
+                "<tr>"+
+                "<td>" + "Otras versiones" + "</td>" +
+                "<td>" + otras + "</td>" +
+                "</tr>"+
+                "</tbody>"+"</table>";
+
+        nodeContent.innerHTML = inner
+
+      }
+    })
+  
+    function StartGraph(gephiJSON) {
+  
+      var data = gephiJSON.nodes
+      nodes.add(data)
+    }
+
+  </script>
+
+</body>
+</html>
