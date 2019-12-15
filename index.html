@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,12 +23,18 @@
   <link rel="stylesheet" href="Skeleton/css/normalize.css">
   <link rel="stylesheet" href="Skeleton/css/skeleton.css">
   <link rel="stylesheet" href="Skeleton/css/custom.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
+  
 
   <!-- Scripts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
   <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+
   <!--
     Including other packages like Vis Timeline or Vis Graph3D here won't work.
     You need the peer build to do that.
@@ -79,7 +86,6 @@
         <div class="one-third column value">
           <h2 class="value-multiplier">17</h2>
           <h5 class="value-heading">Elementos</h5>
-
         </div>
       </div>
     </div>
@@ -101,7 +107,13 @@
         <button onClick="changeGroups(document.getElementById('groupby').value);">Group!</button>  
         <div class="row">
             <pre id="nodeContent"></pre>
-          </div>
+            <br>
+            <br>
+            <br>
+            <div class="chart-container">
+              <canvas id="myChart"></canvas>
+          </div>  
+        </div>    
       </div>
     </div>
   </div>
@@ -170,7 +182,7 @@
                       shape: 'dot',
                       size: 16,
                       color: {
-                      border: '#0E9ED8',
+                      border: '#CDCDCD',
                       background: '#CDCDCD'
                       }
                   },
@@ -245,6 +257,36 @@
                 "</tbody>"+"</table>";
 
         nodeContent.innerHTML = inner
+
+            let r1 = Math.floor(Math.random()*(100-0+1)+0);
+            let r2 = Math.floor(Math.random()*(100-0+1)+0);
+            let r3 = Math.floor(Math.random()*(100-0+1)+0);
+            let r4 = Math.floor(Math.random()*(100-0+1)+0);
+            var ctx = document.getElementById('myChart');
+            var myRadarChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                labels: ["C", "Al", "Ag", "Au","O"],
+                datasets: [{
+                    data: [r1, r2, r3, r4,r1],
+                    backgroundColor: 'rgba(0, 149, 182, 0.1)',
+                    borderColor: 'rgba(0, 149, 182, 0.8)',
+                    label: "Composition"
+                    }]
+                },
+                options: {
+                responsive: true,
+                scale: {
+                      angleLines: {
+                          display: false
+                      },
+                      ticks: {
+                          suggestedMin: 50,
+                          suggestedMax: 100
+                      }
+                  }
+                }
+            });
 
       }
     })
