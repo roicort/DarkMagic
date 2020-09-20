@@ -1,0 +1,18 @@
+Element,Wt%,Wt% Sigma,Atomic%,Standard Label
+O,53.93,0.09,"",SiO2
+Na,0.43,0.02,"",Albite
+Mg,10.87,0.04,"",MgO
+Al,5.08,0.03,"",Al2O3
+Si,16.93,0.05,"",SiO2
+S,0.49,0.01,"",FeS2
+Cl,0.02,0.01,"",NaCl
+K,0.42,0.01,"",KBr
+Ca,7.36,0.02,"",Wollastonite
+Ti,0.04,0.01,"",Ti
+Cr,0.08,0.01,"",Cr
+Mn,0.05,0.01,"",Mn
+Fe,3.26,0.02,"",Fe
+Ni,0.05,0.01,"",Ni
+Ag,0.13,0.02,"",Ag
+Ba,0.86,0.03,"",BaF2
+Total:,100.0,,100.0,
