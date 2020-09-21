@@ -38,19 +38,23 @@ title: Home
 
   <pre id="mynetwork"></pre>
   
-    <div class="container">
-      <select id="groupby">
-        <option value="Dónde se compró">Dónde se compró</option>
-        <option value="Medidas">Medidas</option>
-        <option value="Objeto">Objeto</option>
-        <option value="Voz">Voz</option>
-      </select>
-      <button onClick="changeGroups(document.getElementById('groupby').value);">Group!</button>  
-      <pre id="nodeContent"></pre>
-      <div class="chart-container">
-        <canvas id="myChart"></canvas>
-      </div>  
-    </div>    
+  <select id="groupby">
+    <option value="Dónde se compró">Dónde se compró</option>
+    <option value="Medidas">Medidas</option>
+    <option value="Objeto">Objeto</option>
+    <option value="Voz">Voz</option>
+  </select>
+  <button onClick="changeGroups(document.getElementById('groupby').value);">Group!</button>  
+  <pre id="nodeContent"></pre>
+
+  <div class="chart-container">
+    <canvas id="myChart"></canvas>
+  </div>  
+
+  <br>
+  <br>
+  <br>
+  <br>
 
   <div class="section values">
       <div class="container">
@@ -73,9 +77,6 @@ title: Home
         </div>
       </div>
     </div>
-
-
-
 
 <!-- JavaScript
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -155,7 +156,7 @@ title: Home
         otras = JSON.stringify(data["Otras versiones"]).replace(/\\r/g, '\r').replace(/\\n/g, '\n').replace(/['"]+/g, '')
 
         inner = "<br>" +
-                "<table>" + "<tbody>" +
+                "<table class='u-full-width'>" + "<tbody>" +
                 "<tr>"+
                 "<td>" + "Nombre" + "</td>" + 
                 "<td>" + label + "</td>" + 
@@ -229,8 +230,9 @@ title: Home
   
       var data = gephiJSON.nodes
       nodes.add(data)
+      changeGroups("Dónde se compró");
     }
-
+    
   </script>
 
 </body>
