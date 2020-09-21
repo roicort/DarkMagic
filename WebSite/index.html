@@ -1,128 +1,93 @@
+---
+layout: page
+title: Home
+---
+
+
 <!DOCTYPE html>
-<html lang="en">
-   <head>
-       <meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
-<title>Home &#9642; DarkMagic</title>
-<!---->
-<meta name="description" content="this should contain a proper description
-">
-<link rel="canonical" href="/">
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Home" />
-<meta name="twitter:description" content="this should contain a proper description
-" />
-<meta name="twitter:image" content="" />
-<meta name="author" content="">
-<link rel="author" href="">
-<meta property="og:locale" content="">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Home">
-<meta property="og:description" content="this should contain a proper description
-">
-<meta property="og:url" content="/">
-<meta property="og:site_name" content="DarkMagic">
-<link rel="stylesheet" href="/assets/vendor/normalize-css/normalize.css">
-<link rel="stylesheet" href="/assets/css/main.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:400,400italic,700,700italic">
-<style>
-    html {
-      font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-    }
-</style>
-<link rel="stylesheet" href="/assets/css/bf.css">
-   <body>
-       <div class="wrapper" id="blep">
-          <header>
-   <div class="menu">
-     <div class="logo">
-        <a href="/">DarkMagic</a>
-        <object type="image/svg+xml" data="/assets/img/magic.svg" class="logosvg">Your browser does not support svg images</object>
-     </div>
-       <ul>
-           <li><a href="/about">acerca</a>
-           <li><a href="/archive">estudio</a>
-       </ul>
-   </div>
-   <div class="social">
-     <ul>
-       <li>
-            <a href="https://github.com/roicort/DarkMagic" target="_blank" class="smaller">
-              <span class="icon-github"></span>
-            </a>
-       <li>
-            <a href="mailto:rcortez@enesmorelia.unam.mx" target="_blank">
-              <span class="icon-mail_outline"></span>
-            </a>
-       <li>
-            <a href="/feed.xml" target="_blank">
-                <span class="icon-rss_feed"></span>
-            </a>
-       <li>
-            <a href="#" onclick="switchTheme()" title="Switch theme?">
-              <span class="icon-invert_colors" id="theme-switcher"></span>
-            </a>
-     </ul>
-   </div>
-</header>
-            <!DOCTYPE html>
 <html lang="es">
 <head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
   <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
- <style type="text/css">
+
+
+  <style type="text/css">
     #mynetwork {
       width: 100%;
       height: 500px;
       border: 5px solid rgb(75, 75, 75);
     }
- </style>
+  </style>
+
+</head>
 <body>
- <div class="section get-help">
-   <div class="container">
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <div class="section get-help">
+    <div class="container">
         <br>
-     <div class="row">
-       <pre id="mynetwork"></pre>
+      <div class="row">
+        <pre id="mynetwork"></pre>
         <br>
         <select id="groupby">
-          <option value="Dónde se compró">Dónde se compró
-          <option value="Medidas">Medidas
-          <option value="Objeto">Objeto
-          <option value="Voz">Voz
+          <option value="Dónde se compró">Dónde se compró</option>
+          <option value="Medidas">Medidas</option>
+          <option value="Objeto">Objeto</option>
+          <option value="Voz">Voz</option>
         </select>
         <button onClick="changeGroups(document.getElementById('groupby').value);">Group!</button>  
-       <div class="row">
-           <pre id="nodeContent"></pre>
-           <div class="chart-container">
+        <div class="row">
+            <pre id="nodeContent"></pre>
+            <div class="chart-container">
               <canvas id="myChart"></canvas>
-         </div> 
-       </div>   
-     </div>
-   </div>
- </div>
- <div class="section values">
-     <div class="container">
-       <div class="row">
-         <div class="one-third column value">
+          </div>  
+        </div>    
+      </div>
+    </div>
+  </div>
+
+  <div class="section values">
+      <div class="container">
+        <div class="row">
+          <div class="one-third column value">
+              <!-- <h2 class="value-multiplier">ENES</h2> -->
             <br>
             <img class="u-max-full-width" src="assets/img/landing/enes.png">
-         </div>
-         <div class="one-third column value">
+          </div>
+          <div class="one-third column value">
+            <!-- <h2 class="value-multiplier">TICS</h2> -->
           <br>
           <img class="u-max-full-width" src="assets/img/landing/tics.png">
-       </div>
-         <div class="one-third column value">
+        </div>
+          <div class="one-third column value">
+              <!-- <h2 class="value-multiplier">UDIR</h2> -->
             <br>
             <img class="u-max-full-width" src="assets/img/landing/udir.png">
-         </div>
-       </div>
-     </div>
-   </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+<!-- JavaScript
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
   <script type="text/javascript">
+
     function loadJSON(path,FUN, error){
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function () {
@@ -138,11 +103,15 @@
       xhr.open('GET', path, true);
       xhr.send();
     }
+  
     var network;
     var nodes = new vis.DataSet();
     var edges = new vis.DataSet();
+  
     var nodeContent = document.getElementById('nodeContent');
+  
     loadJSON('data/hechizos.json', StartGraph, function(err) {console.log('error')});
+  
     var container = document.getElementById('mynetwork');
     var DATA = {
       nodes: nodes,
@@ -167,16 +136,21 @@
                     keyboard: true
                   }*/
               };
+  
     network = new vis.Network(container, DATA, options);
+
       function changeGroups(groupBy){
         for (let [k, v] of nodes._data) {
            nodes.update({id:k, group:v[groupBy]});
           }
           network.setData(DATA)
       }
+  
     network.on('click', function (params) {
       if (params.nodes.length > 0) {
+        
         var data = nodes.get(params.nodes)[0];
+
         label = JSON.stringify(data["label"]).replace(/\\r/g, '\r').replace(/\\n/g, '\n').replace(/['"]+/g, '')
         oracion = JSON.stringify(data["Oración"]).replace(/\\r/g, '\r').replace(/\\n/g, '\n').replace(/['"]+/g, '')
         objeto = JSON.stringify(data["Objeto"]).replace(/\\r/g, '\r').replace(/\\n/g, '\n').replace(/['"]+/g, '')
@@ -185,42 +159,45 @@
         daad = JSON.stringify(data["Datos adicionales"]).replace(/\\r/g, '\r').replace(/\\n/g, '\n').replace(/['"]+/g, '')
         voz = JSON.stringify(data["Voz"]).replace(/\\r/g, '\r').replace(/\\n/g, '\n').replace(/['"]+/g, '')
         otras = JSON.stringify(data["Otras versiones"]).replace(/\\r/g, '\r').replace(/\\n/g, '\n').replace(/['"]+/g, '')
+
         inner = "<br>" +
                 "<table>" + "<tbody>" +
                 "<tr>"+
-                "<td>" + "Nombre" + "" + 
-                "<td>" + label + "" + 
-                ""+
+                "<td>" + "Nombre" + "</td>" + 
+                "<td>" + label + "</td>" + 
+                "</tr>"+
                 "<tr>"+
-                "<td>" + "Oración" + "" +
-                "<td>" + oracion + "" +
-                ""+
+                "<td>" + "Oración" + "</td>" +
+                "<td>" + oracion + "</td>" +
+                "</tr>"+
                 "<tr>"+
-                "<td>" + "Objeto" + "" +
-                "<td>" + objeto + "" +
-                ""+
+                "<td>" + "Objeto" + "</td>" +
+                "<td>" + objeto + "</td>" +
+                "</tr>"+
                 "<tr>"+
-                "<td>" + "Dónde se compró" + "" +
-                "<td>" + donde + "" +
-                ""+
+                "<td>" + "Dónde se compró" + "</td>" +
+                "<td>" + donde + "</td>" +
+                "</tr>"+
                 "<tr>"+
-                "<td>" + "Medidas" + "" +
-                "<td>" + medidas + "" +
-                ""+
+                "<td>" + "Medidas" + "</td>" +
+                "<td>" + medidas + "</td>" +
+                "</tr>"+
                 "<tr>"+
-                "<td>" + "Datos Adicionales" + "" +
-                "<td>" + daad + "" +
-                ""+
+                "<td>" + "Datos Adicionales" + "</td>" +
+                "<td>" + daad + "</td>" +
+                "</tr>"+
                 "<tr>"+
-                "<td>" + "Voz" + "" +
-                "<td>" + voz + "" +
-                ""+
+                "<td>" + "Voz" + "</td>" +
+                "<td>" + voz + "</td>" +
+                "</tr>"+
                 "<tr>"+
-                "<td>" + "Otras versiones" + "" +
-                "<td>" + otras + "" +
-                ""+
-                ""+"</table>";
+                "<td>" + "Otras versiones" + "</td>" +
+                "<td>" + otras + "</td>" +
+                "</tr>"+
+                "</tbody>"+"</table>";
+
         nodeContent.innerHTML = inner
+
             let r1 = Math.floor(Math.random()*(100-0+1)+0);
             let r2 = Math.floor(Math.random()*(100-0+1)+0);
             let r3 = Math.floor(Math.random()*(100-0+1)+0);
@@ -250,19 +227,17 @@
                   }
                 }
             });
+
       }
     })
+  
     function StartGraph(gephiJSON) {
+  
       var data = gephiJSON.nodes
       nodes.add(data)
     }
+
   </script>
-           <footer>
-    <span>this should contain a proper description
-</span>
-    <span>written by Rodrigo</span>
-</footer>
-       </div>
-<script type="text/javascript" src="/assets/js/theme.js"></script>
-<script type="text/javascript" src="/assets/js/barefoot.js"></script>
-    
+
+</body>
+</html>
