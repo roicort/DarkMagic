@@ -10,6 +10,7 @@ title: Home
 
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
+  <link rel="stylesheet" href="assets/css/skeleton/skeleton.css">
 
   <!-- Scripts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -35,28 +36,21 @@ title: Home
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
-  <div class="section get-help">
+  <pre id="mynetwork"></pre>
+  
     <div class="container">
-        <br>
-      <div class="row">
-        <pre id="mynetwork"></pre>
-        <br>
-        <select id="groupby">
-          <option value="Dónde se compró">Dónde se compró</option>
-          <option value="Medidas">Medidas</option>
-          <option value="Objeto">Objeto</option>
-          <option value="Voz">Voz</option>
-        </select>
-        <button onClick="changeGroups(document.getElementById('groupby').value);">Group!</button>  
-        <div class="row">
-            <pre id="nodeContent"></pre>
-            <div class="chart-container">
-              <canvas id="myChart"></canvas>
-          </div>  
-        </div>    
-      </div>
-    </div>
-  </div>
+      <select id="groupby">
+        <option value="Dónde se compró">Dónde se compró</option>
+        <option value="Medidas">Medidas</option>
+        <option value="Objeto">Objeto</option>
+        <option value="Voz">Voz</option>
+      </select>
+      <button onClick="changeGroups(document.getElementById('groupby').value);">Group!</button>  
+      <pre id="nodeContent"></pre>
+      <div class="chart-container">
+        <canvas id="myChart"></canvas>
+      </div>  
+    </div>    
 
   <div class="section values">
       <div class="container">
