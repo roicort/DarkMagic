@@ -16,12 +16,13 @@ header {
         -webkit-filter: var(--invert-logo-color);
     }
     .logosvgbottom {
-      height: 2.7rem;
+      height: 5rem;
       -webkit-filter: var(--invert-logo-color);
-      align-content: center;
-
+      display: block;
+      margin: auto;
   }
 }
+
 
 .menu {
     float: left;
