@@ -130,8 +130,10 @@ title: Home
     network = new vis.Network(container, DATA, options);
 
       function changeGroups(groupBy){
-        for (let [k, v] of nodes._data) {
-           nodes.update({id:k, group:v[groupBy]});
+        for (let i of nodes.getIds()) {
+           nod = nodes.get(i)
+           console.log(nod)
+           nodes.update({id:i, group:nod[groupBy]});
           }
           network.setData(DATA)
       }
@@ -225,7 +227,7 @@ title: Home
   
       var data = gephiJSON.nodes
       nodes.add(data)
-      changeGroups("Dónde se compró");
+      //changeGroups("Dónde se compró");
     }
     
   </script>
