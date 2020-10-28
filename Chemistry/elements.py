@@ -39,23 +39,8 @@ def reading(read_path,save_path):
 
     mdf = complete.to_numpy().T
 
-    fig, ax = plt.subplots()
-    im = ax.imshow(mdf)
+    print(mdf)
 
-    # We want to show all ticks...
-    ax.set_xticks(np.arange(len(names)))
-    ax.set_yticks(np.arange(len(elements)))
-    # ... and label them with the respective list entries  6 
-    ax.set_xticklabels(names,{'fontsize': 2})
-    ax.set_yticklabels(elements,{'fontsize': 2})
-
-    #Rotate the tick labels and set their alignment.
-    plt.setp(ax.get_xticklabels(), rotation=90, ha="right",
-            rotation_mode="anchor")
-
-    fig.colorbar(im)
-    fig.savefig(save_path+"elements"+".png",dpi=1500)
-    fig.clf()
     return "Done"
 
 reading("/Users/roicort/Documents/GitHub/DarkMagic/Chemistry/Reports/","/Users/roicort/Documents/GitHub/DarkMagic/Chemistry/")

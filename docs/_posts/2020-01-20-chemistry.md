@@ -14,4 +14,4 @@ published: true
 
 Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. *Aenean eu leo quam.* Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
 
-![image](https://raw.githubusercontent.com/roicort/DarkMagic/master/Chemistry/complete.png)
+![image](https://raw.githubusercontent.com/roicort/DarkMagic/master/Chemistry/elements.png)
