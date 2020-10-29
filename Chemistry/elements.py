@@ -7,6 +7,13 @@ import scipy.spatial.distance as ssd
 from scipy.cluster import hierarchy
 import matplotlib.pyplot as plt
 
+from itertools import combinations
+from operator import itemgetter
+from time import time
+from itertools import combinations
+
+from mlxtend.frequent_patterns import apriori
+
 def reading(read_path,save_path):
 
     #-----------------------------------------------
@@ -34,13 +41,22 @@ def reading(read_path,save_path):
     complete=complete.fillna(0)
     print(complete)
 
-    elements = complete.columns.values.tolist()
-    names = complete.index.values.tolist()
+    return complete
 
-    mdf = complete.to_numpy().T
+def get_support(df):
+    pp = []
+    for cnum in tqdm(range(2, 6)):
+        for cols in combinations(df, cnum):
+            s = df[list(cols)].all(axis=1).sum()
+            pp.append([",".join(cols), s])
+    sdf = pd.DataFrame(pp, columns=["Pattern", "Support"])
+    return sdf
 
-    print(mdf)
+table = reading("/Users/roicort/Documents/GitHub/DarkMagic/Chemistry/Reports/","/Users/roicort/Documents/GitHub/DarkMagic/Chemistry/")
 
-    return "Done"
+apriori(table, min_support=0.5, use_colnames=False, max_len=None, verbose=0, low_memory=False)
 
-reading("/Users/roicort/Documents/GitHub/DarkMagic/Chemistry/Reports/","/Users/roicort/Documents/GitHub/DarkMagic/Chemistry/")
+#sdf = get_support(table)
+#elements = sdf[sdf["Support"] >= 65].sort_values(by=['Support'],ascending=False)
+#elements.to_csv('/Users/roicort/Documents/GitHub/DarkMagic/Chemistry/'+'elements.csv') 
+#print(elements)
